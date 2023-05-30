@@ -1,0 +1,34 @@
+
+local places = {
+    ["bedwars"] = "8444591321",
+    ["bedwars"] = "6872274481",
+    ["bedwars"] = "8560631822",
+}
+
+local function createnotification(title, text, delay)
+	game:GetService("StarterGui"):SetCore("SendNotification", {
+		Title = title,
+		Text = text,
+		Duration = delay
+	})
+end
+
+if shared.GoodSkillExecuted then
+	createnotification("GoodSkill Client", "GoodSkill Is Alreday Executed!", 5)
+	return
+else
+	shared.GoodSkillExecuted = true
+end
+
+local GuiLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/UnknowninglyMC/MyProjects/Scriptz/Bedwars/ScriptUiLibrary.lua", true))()
+local EntityLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/Libraries/entityHandler.lua", true))()
+shared.GuiLibrary = GuiLibrary
+shared.EntityLibrary = EntityLibrary
+
+for i,v in pairs(places) do
+  if game.PlaceId == v then
+       loadstring(game:HttpGet("https://raw.githubusercontent.com/LuizTechTVSkidder/MainScripts/main/Games/" .. i .. ".lua"))()
+   end
+end
+
+createnotification("GoodSkill Client", "WIP", 5)

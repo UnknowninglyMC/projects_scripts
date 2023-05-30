@@ -1,7 +1,7 @@
 local places = {
-    ["bedwars"] = "8444591321",
-    ["bedwars"] = "6872274481",
-    ["bedwars"] = "8560631822",
+    ["bedwars_test"] = "8444591321",
+    ["bedwars_test"] = "6872274481",
+    ["bedwars_test"] = "8560631822",
 }
 
 local function createnotification(title, text, delay)

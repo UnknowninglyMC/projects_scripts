@@ -1,7 +1,7 @@
 repeat wait() until game:IsLoaded()
 repeat wait() until game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
 
-local Kavo = shared.Kavo
+local Kavo = shared.GuiLibrary
 
 local players = game:GetService("Players")
 local lplr = players.LocalPlayer

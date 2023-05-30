@@ -26,7 +26,7 @@ shared.EntityLibrary = EntityLibrary
 
 for i,v in pairs(places) do
   if game.PlaceId == v then
-       loadstring(game:HttpGet("https://raw.githubusercontent.com/UnknowninglyMC/projects_scripts/main/goodskill/custom_modules/" .. i .. "))()
+       loadstring(game:HttpGet("https://raw.githubusercontent.com/UnknowninglyMC/projects_scripts/main/goodskill/custom_modules/" .. i .. ""))()
    end
 end
 

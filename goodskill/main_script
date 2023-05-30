@@ -19,7 +19,7 @@ else
 	shared.GoodSkillExecuted = true
 end
 
-local GuiLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/UnknowninglyMC/MyProjects/Scriptz/Bedwars/ScriptUiLibrary.lua", true))()
+local GuiLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/UnknowninglyMC/projects_scripts/main/goodskill/lib/gui_library", true))()
 local EntityLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/Libraries/entityHandler.lua", true))()
 shared.GuiLibrary = GuiLibrary
 shared.EntityLibrary = EntityLibrary

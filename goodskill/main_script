@@ -1,4 +1,3 @@
-
 local places = {
     ["bedwars"] = "8444591321",
     ["bedwars"] = "6872274481",
@@ -27,7 +26,7 @@ shared.EntityLibrary = EntityLibrary
 
 for i,v in pairs(places) do
   if game.PlaceId == v then
-       loadstring(game:HttpGet("https://raw.githubusercontent.com/LuizTechTVSkidder/MainScripts/main/Games/" .. i .. ".lua"))()
+       loadstring(game:HttpGet("https://raw.githubusercontent.com/UnknowninglyMC/projects_scripts/main/goodskill/custom_modules/" .. i .. "))()
    end
 end
 

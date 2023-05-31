@@ -1,0 +1,23 @@
+local function createnotification(title, text, delay)
+	game:GetService("StarterGui"):SetCore("SendNotification", {
+		Title = title,
+		Text = text,
+		Duration = delay
+	})
+end
+
+if shared.SomethingExecuted then
+	createnotification("Alreday Executed", "", 10)
+	return
+else
+	shared.SomethingExecuted = true
+end
+
+local GuiLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/UnknowninglyMC/projects_scripts/main/goodskill/UiLibrary", true))()
+shared.GuiLibrary = GuiLibrary
+
+if game.PlaceId == 6872274481 or game.PlaceId == 8560631822 or game.PlaceId == 8444591321 then
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/UnknowninglyMC/projects_scripts/main/goodskill/custom_modules/bedwars", true))()
+     else
+    createnotification("Bedwars", "", 10)
+end

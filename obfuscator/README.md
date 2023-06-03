@@ -4,7 +4,7 @@ this obfuscator made to fix mess
 
 ```lua
 
-local obfuscator = loadstring(game:HttpGet("https://raw.githubusercontent.com/GhostDuckyy/RBXLuaObfuscator/main/source.lua"))()
+local obfuscator = loadstring(game:HttpGet("https://raw.githubusercontent.com/UnknowninglyMC/projects_scripts/main/obfuscator/__source"))()
 
 obfuscator(
 

@@ -47,7 +47,7 @@ end
 local Signal         = loadstring(game.HttpGet(game, "https://raw.githubusercontent.com/ttwizz/BitzUtils/main/Signal.lua"))()
 local CallbackSignal = Signal.new()
 
-local OrionLib   = loadstring(game:HttpGet(("https://pastebin.com/raw/85f5FWpk")))()
+local OrionLib   = loadstring(game:HttpGet(("https://pastebin.com/raw/exe18DhP")))()
 OrionLib.Icons   = {
     Combat   = "rbxassetid://10401329089";
     Movement = "rbxassetid://10403468113";

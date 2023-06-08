@@ -1,4 +1,4 @@
-if shared.AshuraExecuted then
+
 	local GuiLibrary = {}
 
 	local tween = game:GetService("TweenService")
@@ -2648,4 +2648,3 @@ if shared.AshuraExecuted then
 		return Tabs
 	end
 	return GuiLibrary
-end

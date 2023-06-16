@@ -250,6 +250,7 @@ end)
 window:Button("Save_TAS", function()
    SaveRun()
 end)
-if 
+if game.Players.LocalPlayer.Humanoid.Health > 0 then
   window:Destroy()
+end
 end

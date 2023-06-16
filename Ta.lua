@@ -227,40 +227,7 @@ UserInputService.InputBegan:Connect(function(Key,Typing)
     end
 end)
 -- For Mobile Users
-if UserInputService.TouchEnabled and not UserInputService.KeyboardEnabled then
+if UserInputService.TouchEnabled then
 -- Just Creating UI Lib Controllinz For Mobiles Users, Very Common Right?
-local Library = loadstring(game:HttpGet("https://pastebin.com/raw/xnQdnLvb", true))()
-local Window = Library:CreateWindow "Window"
-
-Window:AddButton(
-    {text = "pause/unpause", flag = "button", callback = function()
-            UserPause()
-        end}
-)
-Window:AddButton(
-    {text = "add savestate", flag = "button", callback = function()
-            AddSavestate()
-        end}
-)
-Window:AddButton(
-    {text = "delete savestate", flag = "button", callback = function()
-            RemoveSavestate()
-        end}
-)
-Window:AddButton(
-    {text = "go to last savestate", flag = "button", callback = function()
-            BackSavestate()
-        end}
-)
-Window:AddButton(
-    {text = "cancollide", flag = "button", callback = function()
-            CollisionToggler()
-        end}
-)
-Window:AddButton(
-    {text = "save run", flag = "button", callback = function()
-            SaveRun()
-        end}
-)
-Library:Init()
+loadstring(game:HttpGet("https://pastebin.com/raw/GYjJkWJ1"))()
 end

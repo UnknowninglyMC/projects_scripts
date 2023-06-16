@@ -231,7 +231,7 @@ end)
 if UserInputService.TouchEnabled then
 -- Just Creating UI Lib Controllinz For Mobiles Users, Very Common Right?
 local library = loadstring(game:HttpGet("https://pastebin.com/raw/6MvaAe8d"))()
-local window = library:Window("TAS", UDim2.new(0, 170, 0, 33))
+local window = library:Window("TAS", UDim2.new(0, 150, 0, 33))
 window:Button("Pause", function()
    UserPause()
 end)

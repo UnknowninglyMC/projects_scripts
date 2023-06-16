@@ -262,4 +262,5 @@ Window:AddButton(
             SaveRun()
         end}
 )
+Library:Init()
 end

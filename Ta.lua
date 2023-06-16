@@ -230,53 +230,24 @@ end)
 -- For Mobile Users
 if UserInputService.TouchEnabled then
 -- Just Creating UI Lib Controllinz For Mobiles Users, Very Common Right?
-local config = {
-    ["HeaderWidth"] = 250,
-    ["AccentColor"] = Color3.new(0.6, 0, 0)
-}
-local gui =
-    loadstring(game:HttpGet("https://gitlab.com/0x45.xyz/droplib/-/raw/master/drop-minified.lua"))():Init(
-    config,
-    game.CoreGui
-)
-local lpg = gui:CreateCategory("TAS")
-
-
-lpg:CreateButton(
-    "pause/unpause",
-    function()
-        UserPause()
-    end
-)
-lpg:CreateButton(
-    "add savestate",
-    function()
-        AddSavestate()
-    end
-)
-lpg:CreateButton(
-    "remove savestate",
-    function()
-        RemoveSavestate()
-    end
-)
-lpg:CreateButton(
-    "go to last savestate",
-    function()
-        BackSavestate()
-    end
-)
-lpg:CreateButton(
-    "cancollide",
-    function()
-        CollisionToggler()
-    end
-)
-lpg:CreateButton(
-    "save run",
-    function()
-        SaveRun()
-    end
-)
-
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Turtle-Brand/Turtle-Lib/main/source.lua"))()
+local window = library:Window("TAS")
+window:Button("Pause", function()
+   UserPause()
+end)
+window:Button("Add_SaveState", function()
+   AddSavestate()
+end)
+window:Button("Remove_SaveState", function()
+   RemoveSavestate()
+end)
+window:Button("Last_SaveState", function()
+   BackSavestate()
+end)
+window:Button("Collision_Toggler", function()
+   CollisionToggler()
+end)
+window:Button("Save_TAS", function()
+   SaveRun()
+end)
 end

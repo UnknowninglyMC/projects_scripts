@@ -228,20 +228,22 @@ UserInputService.InputBegan:Connect(function(Key,Typing)
 end)
 -- For Mobile Users
 if UserInputService.TouchEnabled then
+
 for _, v in pairs(game.CoreGui:GetChildren()) do
-	if v.Name == "MobileUI" then
+	if v.Name == "TASUI" then
 		v:Destroy()
 	end
 end
 
-local MobileUI = Instance.new("ScreenGui")
-MobileUI.Name = "MobileUI"
-MobileUI.Parent = game.Players.LocalPlayer.PlayerGui
+local TASUI = Instance.new("ScreenGui")
+
+TASUI.Name = "TASUI"
+TASUI.Parent = game.CoreGui
 
 local function getNextWindowPos()
 	local biggest = 0;
 	local ok = nil;
-	for i, v in pairs(MobileUI:GetChildren()) do
+	for i, v in pairs(TASUI:GetChildren()) do
 		if v.Position.X.Offset > biggest then
 			biggest = v.Position.X.Offset
 			ok = v;
@@ -256,21 +258,22 @@ local function getNextWindowPos()
 	return biggest;
 end
 
--- Credits To Youtube Im Learned To Build UI, Well its has hard.
 local Library = {}
 
 function Library:Window(title, color)
-	color = color or Color3.fromRGB(72, 132, 107)
+	color = color or Color3.fromRGB(0, 100, 255)
 	local visible = true
 	local Window = Instance.new("Frame")
+	local WindowCover = Instance.new("UICorner")
 	local Title = Instance.new("TextLabel")
 	local Body = Instance.new("Frame")
+	local BodyCover = Instance.new("UICorner")
 	local UIListLayout = Instance.new("UIListLayout")
 	local UIPadding = Instance.new("UIPadding")
 	local Arrow = Instance.new("ImageButton")
 
 	Window.Name = "Window"
-	Window.Parent = MobileUI
+	Window.Parent = TASUI
 	Window.BackgroundColor3 = color
 	Window.BorderSizePixel = 0
 	Window.Position = UDim2.new(0, getNextWindowPos() + 10, 0, 10)
@@ -278,7 +281,11 @@ function Library:Window(title, color)
 	Window.ZIndex = 2
 	Window.Active = true
 	Window.Draggable = true
-
+	
+    WindowCover.CornerRadius = UDim.new(0, 4)
+    WindowCover.Name = "WindowCover"
+    WindowCover.Parent = Window
+    
 	Title.Name = "Title"
 	Title.Parent = Window
 	Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -287,17 +294,20 @@ function Library:Window(title, color)
 	Title.ZIndex = 2
 	Title.Font = Enum.Font.SourceSans
 	Title.Text = title
-	Title.TextColor3 = Color3.fromRGB(244, 244, 244)
+	Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 	Title.TextScaled = true
 	Title.TextSize = 14.000
 	Title.TextWrapped = true
 
 	Body.Name = "Body"
 	Body.Parent = Window
-	Body.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	Body.BackgroundTransparency = 1.000
+	Body.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
 	Body.Size = UDim2.new(1, 0, 0, 0)
-
+    
+    BodyCover.CornerRadius = UDim.new(0, 4)
+    BodyCover.Name = "BodyCover"
+    BodyCover.Parent = Body
+    
 	UIListLayout.Parent = Body
 	UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 
@@ -350,6 +360,7 @@ function Library:Window(title, color)
 
 	function Lib:Button(name, callback)
 		local ButtonContainer = Instance.new("Frame")
+		local ButtonCover = Instance.new"UICorner"
 		local Button = Instance.new("TextButton")
 
 		ButtonContainer.Name = "ButtonContainer"
@@ -358,7 +369,12 @@ function Library:Window(title, color)
 		ButtonContainer.BackgroundTransparency = 0.250
 		ButtonContainer.BorderSizePixel = 0
 		ButtonContainer.Size = UDim2.new(1, 0, 0, 36)
-
+   
+       
+    ButtonCover.CornerRadius = UDim.new(0, 4)
+    ButtonCover.Name = "ButtonCover"
+    ButtonCover.Parent = ButtonContainer
+   
 		Button.Name = "Button"
 		Button.Parent = ButtonContainer
 		Button.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -366,7 +382,7 @@ function Library:Window(title, color)
 		Button.Size = UDim2.new(1, 0, 1, 0)
 		Button.Font = Enum.Font.SourceSans
 		Button.Text = name
-		Button.TextColor3 = Color3.fromRGB(174, 175, 176)
+		Button.TextColor3 = Color3.fromRGB(255, 255, 255)
 		Button.TextSize = 24.000
 
 		Button.MouseButton1Down:connect(function()
@@ -387,6 +403,7 @@ function Library:Window(title, color)
 		end)
 
 	end
+
 	return Lib;
 
 end
@@ -421,14 +438,13 @@ Window:Button("Save", function()
    SaveRun()
 end)
 
--- I'm made this for bugs, it's bc, what the freak 
 game.Players.LocalPlayer.Character.Humanoid.Died:Connect(function()
-    for _, v in pairs(game.CoreGui:GetChildren()) do
-	if v.Name == "MobileUI" then
+for _, v in pairs(game.CoreGui:GetChildren()) do
+	if v.Name == "TASUI" then
 		v:Destroy()
 	end
 end
 end)
-return Library;
 
+return Library;
 end

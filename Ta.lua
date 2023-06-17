@@ -226,7 +226,7 @@ UserInputService.InputBegan:Connect(function(Key,Typing)
         end
     end
 end)
--- For Mobile Users
+-- For Mobile Users (takes 2 days to make)
 if UserInputService.TouchEnabled then
 
 for _, v in pairs(game.CoreGui:GetChildren()) do
@@ -384,23 +384,31 @@ function Library:Window(title, color)
 		Button.Text = name
 		Button.TextColor3 = Color3.fromRGB(255, 255, 255)
 		Button.TextSize = 24.000
-
+		
+    local btn = ButtonContainer
+    local sample = Button
+    
 		Button.MouseButton1Down:connect(function()
 			callback()
+			local c = sample:Clone()
+                        c.Parent = btn
+                        local x, y = (ms.X - c.AbsolutePosition.X), (ms.Y - c.AbsolutePosition.Y)
+                        c.Position = UDim2.new(0, x, 0, y)
+                        local len, size = 0.35, nil
+                        if btn.AbsoluteSize.X >= btn.AbsoluteSize.Y then
+                            size = (btn.AbsoluteSize.X * 1.5)
+                        else
+                            size = (btn.AbsoluteSize.Y * 1.5)
+                        end
+                        c:TweenSizeAndPosition(UDim2.new(0, size, 0, size), UDim2.new(0.5, (-size / 2), 0.5, (-size / 2)), 'Out', 'Quad', len, true, nil)
+                        for i = 1, 10 do
+                            c.ImageTransparency = c.ImageTransparency + 0.05
+                            wait(len / 12)
+                        end
+                        c:Destroy()
 			ButtonContainer.BackgroundColor3 = Color3.fromRGB(35, 45, 65)
 		end)
-
-		Button.MouseButton1Up:connect(function()
-			ButtonContainer.BackgroundColor3 = Color3.fromRGB(47, 61, 87)
-		end)
-
-		Button.MouseEnter:Connect(function()
-			ButtonContainer.BackgroundColor3 = Color3.fromRGB(68, 88, 126)
-		end)
-
-		Button.MouseLeave:connect(function()
-			ButtonContainer.BackgroundColor3 = Color3.fromRGB(47, 61, 87)
-		end)
+   
 
 	end
 
@@ -438,6 +446,7 @@ Window:Button("Save", function()
    SaveRun()
 end)
 
+-- Bug Never Wins
 game.Players.LocalPlayer.Character.Humanoid.Died:Connect(function()
 for _, v in pairs(game.CoreGui:GetChildren()) do
 	if v.Name == "TASUI" then

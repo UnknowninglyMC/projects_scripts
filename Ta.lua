@@ -234,11 +234,24 @@ for _, v in pairs(game.CoreGui:GetChildren()) do
 	end
 end
 
+-- this is made for bugs
+local Health     =  game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Health
+local function Percent(First, Second)
+    return(First / Second)
+end
+Health:GetPropertyChangedSignal("Value"):Connect(function()
+    if Percent(Health.Value, Health.MaxHealth.Value) <= 0.003 and Percent(Health.Value, Health.MaxHealth.Value) >= 0 then
+          for _, v in pairs(game.CoreGui:GetChildren()) do
+	          if v.Name == "MobileUI" then
+		           v:Destroy()
+	         end
+       end
+    end
+end)
+
 local MobileUI = Instance.new("ScreenGui")
--- So it's don't bugs if reset on spawn is true.
 MobileUI.Name = "MobileUI"
 MobileUI.Parent = game.Players.LocalPlayer.PlayerGui
-MobileUI.ResetOnSpawn = true
 
 local function getNextWindowPos()
 	local biggest = 0;

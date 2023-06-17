@@ -301,7 +301,7 @@ function Library:Window(title, color)
 	Body.Name = "Body"
 	Body.Parent = Window
 	Body.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-	Body.Size = UDim2.new(1, 0, -1.5, 0)
+	Body.Size = UDim2.new(1, 0, 0, 0)
     
     BodyCover.CornerRadius = UDim.new(0, 4)
     BodyCover.Name = "BodyCover"
@@ -368,7 +368,6 @@ function Library:Window(title, color)
 		ButtonContainer.BackgroundTransparency = 0
 		ButtonContainer.BorderSizePixel = 0
 		ButtonContainer.Size = UDim2.new(1, 0, 0, 36)
-   
        
     ButtonCover.CornerRadius = UDim.new(0, 4)
     ButtonCover.Name = "ButtonCover"
@@ -402,10 +401,6 @@ end
 local Window = Library:Window("TAS")
 
 -- ################ Dont Remove This
-Window:Button("HI", function()
-end)
-Window:Button("HI", function()
-end)
 Window:Button("HI", function()
 end)
 -- ################

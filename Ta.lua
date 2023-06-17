@@ -14,7 +14,6 @@ local SenvAnimation
 local PlayAnimation
 local TimeStart
 local TimeText
-
 local function ReturnPlayerInfo()
     return {
             CFrame = LocalPlayer.Character.HumanoidRootPart.CFrame,
@@ -229,28 +228,200 @@ UserInputService.InputBegan:Connect(function(Key,Typing)
 end)
 -- For Mobile Users
 if UserInputService.TouchEnabled then
--- Just Creating UI Lib Controllinz For Mobiles Users, Very Common Right?
-local library = loadstring(game:HttpGet("https://pastebin.com/raw/6MvaAe8d"))()
-local window = library:Window("TAS", UDim2.new(0, 100, 0, 33))
-window:Button("Pause", function()
+for _, v in pairs(game.CoreGui:GetChildren()) do
+	if v.Name == "MobileUI" then
+		v:Destroy()
+	end
+end
+
+local MobileUI = Instance.new("ScreenGui")
+-- So it's don't bugs if reset on spawn is true.
+MobileUI.Name = "MobileUI"
+MobileUI.Parent = game.Players.LocalPlayer.PlayerGui
+MobileUI.ResetOnSpawn = true
+
+local function getNextWindowPos()
+	local biggest = 0;
+	local ok = nil;
+	for i, v in pairs(MobileUI:GetChildren()) do
+		if v.Position.X.Offset > biggest then
+			biggest = v.Position.X.Offset
+			ok = v;
+		end
+	end
+	if biggest == 0 then
+		biggest = biggest + 5;
+	else
+		biggest = biggest + ok.Size.X.Offset + 5;
+	end
+	
+	return biggest;
+end
+
+-- Credits To Youtube Im Learned To Build UI, Well its has hard.
+local Library = {}
+
+function Library:Window(title, color)
+	color = color or Color3.fromRGB(72, 132, 107)
+	local visible = true
+	local Window = Instance.new("Frame")
+	local Title = Instance.new("TextLabel")
+	local Body = Instance.new("Frame")
+	local UIListLayout = Instance.new("UIListLayout")
+	local UIPadding = Instance.new("UIPadding")
+	local Arrow = Instance.new("ImageButton")
+
+	Window.Name = "Window"
+	Window.Parent = MobileUI
+	Window.BackgroundColor3 = color
+	Window.BorderSizePixel = 0
+	Window.Position = UDim2.new(0, getNextWindowPos() + 10, 0, 10)
+	Window.Size = UDim2.new(0, 109, 0, 36)
+	Window.ZIndex = 2
+	Window.Active = true
+	Window.Draggable = true
+
+	Title.Name = "Title"
+	Title.Parent = Window
+	Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Title.BackgroundTransparency = 1.000
+	Title.Size = UDim2.new(0.80733943, 0, 1, 0)
+	Title.ZIndex = 2
+	Title.Font = Enum.Font.SourceSans
+	Title.Text = title
+	Title.TextColor3 = Color3.fromRGB(244, 244, 244)
+	Title.TextScaled = true
+	Title.TextSize = 14.000
+	Title.TextWrapped = true
+
+	Body.Name = "Body"
+	Body.Parent = Window
+	Body.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Body.BackgroundTransparency = 1.000
+	Body.Size = UDim2.new(1, 0, 0, 0)
+
+	UIListLayout.Parent = Body
+	UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+
+	UIPadding.Parent = Body
+	UIPadding.PaddingTop = UDim.new(0, 36)
+
+	Arrow.Name = "Arrow"
+	Arrow.Parent = Window
+	Arrow.BackgroundTransparency = 1.000
+	Arrow.Position = UDim2.new(0.816513717, 0, 0.21282047, 0)
+	Arrow.Size = UDim2.new(0.176643878, 0, 0.527777791, 0)
+	Arrow.ZIndex = 2
+	Arrow.Image = "rbxassetid://3926305904"
+	Arrow.ImageRectOffset = Vector2.new(924, 884)
+	Arrow.ImageRectSize = Vector2.new(36, 36)
+	Arrow.Rotation = 90
+
+	Arrow.MouseButton1Down:connect(function()
+		if visible == true then
+			Body:TweenSize(UDim2.fromScale(1, 0))
+			for _, v in pairs(Body:GetChildren()) do
+				if v:IsA("Frame") then
+					v:TweenSize(UDim2.new(1, 0, 0, 0))
+				end
+			end
+			game:GetService("TweenService"):Create(Arrow, TweenInfo.new(1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+				Rotation = 0
+			}):Play();
+			wait(0.7)
+			Body.Visible = false
+			visible = false
+		else
+			Body:TweenSize(UDim2.fromScale(1, 0))
+			for _, v in pairs(Body:GetChildren()) do
+				if v:IsA("Frame") then
+					v:TweenSize(UDim2.new(1, 0, 0, 36))
+				end
+			end
+			game:GetService("TweenService"):Create(Arrow, TweenInfo.new(1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+				Rotation = 90
+			}):Play();
+			wait(0.1)
+			Body.Visible = true
+			wait(0.9)
+			visible = true
+		end
+	end)
+
+	local Lib = {}
+
+	function Lib:Button(name, callback)
+		local ButtonContainer = Instance.new("Frame")
+		local Button = Instance.new("TextButton")
+
+		ButtonContainer.Name = "ButtonContainer"
+		ButtonContainer.Parent = Body
+		ButtonContainer.BackgroundColor3 = Color3.fromRGB(47, 61, 87)
+		ButtonContainer.BackgroundTransparency = 0.250
+		ButtonContainer.BorderSizePixel = 0
+		ButtonContainer.Size = UDim2.new(1, 0, 0, 36)
+
+		Button.Name = "Button"
+		Button.Parent = ButtonContainer
+		Button.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		Button.BackgroundTransparency = 1.000
+		Button.Size = UDim2.new(1, 0, 1, 0)
+		Button.Font = Enum.Font.SourceSans
+		Button.Text = name
+		Button.TextColor3 = Color3.fromRGB(174, 175, 176)
+		Button.TextSize = 24.000
+
+		Button.MouseButton1Down:connect(function()
+			callback()
+			ButtonContainer.BackgroundColor3 = Color3.fromRGB(35, 45, 65)
+		end)
+
+		Button.MouseButton1Up:connect(function()
+			ButtonContainer.BackgroundColor3 = Color3.fromRGB(47, 61, 87)
+		end)
+
+		Button.MouseEnter:Connect(function()
+			ButtonContainer.BackgroundColor3 = Color3.fromRGB(68, 88, 126)
+		end)
+
+		Button.MouseLeave:connect(function()
+			ButtonContainer.BackgroundColor3 = Color3.fromRGB(47, 61, 87)
+		end)
+
+	end
+	return Lib;
+
+end
+
+local Window = Library:Window("TAS")
+
+-- ################ Dont Remove This
+Window:Button("HI", function()
+end)
+-- ################
+
+Window:Button("Pause", function()
    UserPause()
 end)
-window:Button("Add_SaveState", function()
+
+Window:Button("Add_SaveState", function()
    AddSavestate()
 end)
-window:Button("Remove_SaveState", function()
+
+Window:Button("Remove_SaveState", function()
    RemoveSavestate()
 end)
-window:Button("Last_SaveState", function()
+
+Window:Button("Back_SaveState", function()
    BackSavestate()
 end)
-window:Button("Collision_Toggler", function()
+
+Window:Button("Collision_Toggler", function()
    CollisionToggler()
 end)
-window:Button("Save_TAS", function()
+Window:Button("Save", function()
    SaveRun()
 end)
-if game.Players.LocalPlayer.Humanoid.Health > 0 then
-  window:Destroy()
-end
+
+return Library;
 end

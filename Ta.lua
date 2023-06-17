@@ -420,14 +420,15 @@ end)
 Window:Button("Save", function()
    SaveRun()
 end)
-local Health = game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Health
-if Health < 0 then
-  for _, v in pairs(game.CoreGui:GetChildren()) do
+
+-- I'm made this for bugs, it's bc, what the freak 
+game.Players.LocalPlayer.Character.Humanoid.Died:Connect(function()
+    for _, v in pairs(game.CoreGui:GetChildren()) do
 	if v.Name == "MobileUI" then
 		v:Destroy()
 	end
 end
-end
+end)
 return Library;
 
 end

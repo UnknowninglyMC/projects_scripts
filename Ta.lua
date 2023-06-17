@@ -234,21 +234,6 @@ for _, v in pairs(game.CoreGui:GetChildren()) do
 	end
 end
 
--- this is made for bugs
-local Health     =  game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Health
-local function Percent(First, Second)
-    return(First / Second)
-end
-Health:GetPropertyChangedSignal("Value"):Connect(function()
-    if Percent(Health.Value, Health.MaxHealth.Value) <= 0.003 and Percent(Health.Value, Health.MaxHealth.Value) >= 0 then
-          for _, v in pairs(game.CoreGui:GetChildren()) do
-	          if v.Name == "MobileUI" then
-		           v:Destroy()
-	         end
-       end
-    end
-end)
-
 local MobileUI = Instance.new("ScreenGui")
 MobileUI.Name = "MobileUI"
 MobileUI.Parent = game.Players.LocalPlayer.PlayerGui
@@ -435,6 +420,14 @@ end)
 Window:Button("Save", function()
    SaveRun()
 end)
-
+local Health = game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Health
+if Health < 0 then
+  for _, v in pairs(game.CoreGui:GetChildren()) do
+	if v.Name == "MobileUI" then
+		v:Destroy()
+	end
+end
+end
 return Library;
+
 end

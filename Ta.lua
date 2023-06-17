@@ -365,8 +365,8 @@ function Library:Window(title, color)
 
 		ButtonContainer.Name = "ButtonContainer"
 		ButtonContainer.Parent = Body
-		ButtonContainer.BackgroundColor3 = Color3.fromRGB(47, 61, 87)
-		ButtonContainer.BackgroundTransparency = 0.250
+		ButtonContainer.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+		ButtonContainer.BackgroundTransparency = 0
 		ButtonContainer.BorderSizePixel = 0
 		ButtonContainer.Size = UDim2.new(1, 0, 0, 36)
    
